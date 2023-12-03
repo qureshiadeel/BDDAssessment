@@ -40,7 +40,6 @@ public class CheckoutStep extends BaseClass {
 
     @When("the user navigates to the shopping cart")
     public void whenUserNavigatesToCart() {
-        homePageObject=new Home_Page_Object(getDriver());
         homePageObject.clickCart();
     }
 
@@ -51,28 +50,19 @@ public class CheckoutStep extends BaseClass {
 
     }
 
-//    @When("enters first name {string} and last name {string} and postal {string} and proceeds by clicking the 'Continue' button")
-//    public void whenUserEntersValidDetails(String first,String last, String postal) {
-//        cartPageObject=new Cart_Page_Object(getDriver());
-//        cartPageObject.enterDetailsAndClickContinue(first,last,postal);
-//    }
-
     @When("enters first name {string} and last name {string} and postal {string} and proceeds by clicking the Continue button")
     public void enters_first_name_and_last_name_and_postal_and_proceeds_by_clicking_the_continue_button(String string, String string2, String string3) {
-                cartPageObject=new Cart_Page_Object(getDriver());
         cartPageObject.enterDetailsAndClickContinue(string,string2,string3);
     }
 
 
     @When("finalizes the purchase by clicking on the 'Finish' button")
     public void whenUserFinalizesPurchase() {
-        cartPageObject=new Cart_Page_Object(getDriver());
         cartPageObject.clickFinish();
     }
 
     @Then("the user should validate the displayed confirmation text")
     public void thenValidateConfirmationText() {
-        cartPageObject=new Cart_Page_Object(getDriver());
         fluentWait_Text(getDriver(), cartPageObject.getText(),"Thank you for your order!",60);
         Assert.assertEquals(cartPageObject.getText().getText().toString(),"Thank you for your order!");
     }
